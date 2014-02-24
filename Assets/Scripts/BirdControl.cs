@@ -100,8 +100,10 @@ public class BirdControl : MonoBehaviour {
 
 		// Cache the horizontal input.
 
-		float h = Input.GetAxis("Horizontal");
-		
+		// float h = Input.GetAxis("Horizontal");
+		float h = Input.GetMouseButton(0) ? Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x ? 1.0f : -1.0f : 0.0f;
+		Debug.Log(Input.mousePosition.x);
+		Debug.Log(transform.position.x);
 		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
 
 		if(h * rigidbody2D.velocity.x < maxXSpeed)
