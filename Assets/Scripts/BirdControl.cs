@@ -40,7 +40,7 @@ public class BirdControl : MonoBehaviour {
 
 		// Grab things
 
-		if (Input.GetMouseButtonDown (1) && grabbing == 0) {
+		if (Input.GetButtonDown("Action") && grabbing == 0) {
 				var nearestDistance = Mathf.Infinity;
 				var grabbables = GameObject.FindGameObjectsWithTag ("Grabbable");
 				Vector3 grabPosition = transform.position + grabbingPosition;
@@ -66,7 +66,7 @@ public class BirdControl : MonoBehaviour {
 
 		// Let go
 
-		if (grabbedObject && (Input.GetMouseButtonUp (1) || Vector2.Distance (grabbedObject.position, transform.position) > grabbableDistance)) {
+		if (grabbedObject && (Input.GetButtonUp("Action") || Vector2.Distance (grabbedObject.position, transform.position) > grabbableDistance)) {
 			grabbing = 3;
 		}
 
