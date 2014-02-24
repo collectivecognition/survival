@@ -6,14 +6,15 @@ public class BirdControl : MonoBehaviour {
 	[HideInInspector]
 	public bool facingRight = true;			// For determining which way the player is currently facing.
 	[HideInInspector]
-	public bool fly = false;
-	public bool flap  = false;
+	private bool fly = false;
+	private float lastFlap = 0;
+	private float timeBetweenFlaps = 0.3f;
 	
 	
-	public float moveForce = 365f;			// Amount of force added to move the player left and right.
-	public float maxXSpeed = 5f;			// The fastest the player can travel in the x axis.
-	public float maxYSpeed = 500f;
-	public float flyForce = 150f;			// Amount of force added when the player jumps.
+	public float moveForce = 100.0f;			// Amount of force added to move the player left and right.
+	private float maxXSpeed = 5f;			// The fastest the player can travel in the x axis.
+	private float maxYSpeed = 500f;
+	private float flyForce = 550f;			// Amount of force added when the player jumps.
 	private float grabbableDistance = 0.9f;
 	private int grabbing = 0;
 	private Transform grabbedObject = null;
@@ -31,14 +32,11 @@ public class BirdControl : MonoBehaviour {
 	void Update () {
 		// Flight controls
 
-		if(Input.GetMouseButtonDown(0))
-			flap = true;
-
-		if (Input.GetMouseButton (0)) {
-						fly = true;
-				} else {
+		if (Input.GetButton("Up")) {
+			fly = true;
+		} else {
 			fly = false;
-				}
+		}
 
 		// Grab things
 
@@ -100,10 +98,8 @@ public class BirdControl : MonoBehaviour {
 
 		// Cache the horizontal input.
 
-		// float h = Input.GetAxis("Horizontal");
-		float h = Input.GetMouseButton(0) ? Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x ? 1.0f : -1.0f : 0.0f;
-		Debug.Log(Input.mousePosition.x);
-		Debug.Log(transform.position.x);
+		float h = Input.GetButton ("Right") ? 1.0f : Input.GetButton ("Left") ? -1.0f : 0.0f;
+
 		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
 
 		if(h * rigidbody2D.velocity.x < maxXSpeed)
@@ -136,19 +132,15 @@ public class BirdControl : MonoBehaviour {
 			// ... flip the player.
 			Flip();
 
-		// If the player should jump...
-		if(flap) {
-			// Add a vertical force to the player.
-			rigidbody2D.AddForce(new Vector2(0f, flyForce));
-
-			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
-			flap = false;
-		}
-
 		if (fly) {
-			rigidbody2D.gravityScale = 0.2f;
+			// rigidbody2D.gravityScale = 0.2f;
+			if(Time.time - lastFlap > timeBetweenFlaps || lastFlap == 0.0f){
+				lastFlap = Time.time;
+				rigidbody2D.AddForce(new Vector2(0f, flyForce));
+			}
+			
 		} else {
-			rigidbody2D.gravityScale = 1.0f;
+			// rigidbody2D.gravityScale = 1.0f;
 		}
 	}
 
@@ -157,7 +149,6 @@ public class BirdControl : MonoBehaviour {
 		facingRight = !facingRight;
 		
 		// Multiply the player's x local scale by -1.
-		Debug.Log (transform.localScale);
 		Vector3 theScale = transform.localScale;
 		theScale.x = -theScale.x;
 		transform.localScale = theScale;

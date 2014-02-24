@@ -452,8 +452,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   facingRight: 1
-  fly: 0
-  flap: 0
   moveForce: 365
   maxXSpeed: 5
   maxYSpeed: 5
