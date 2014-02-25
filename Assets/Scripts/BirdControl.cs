@@ -38,9 +38,10 @@ public class BirdControl : MonoBehaviour {
 			fly = false;
 		}
 
-		// Grab things
+		if (Input.GetButtonDown("Grab")) {
+			// Grab things
 
-		if (Input.GetButtonDown("Grab") && grabbing == 0) {
+			if(grabbing == 0){
 				var nearestDistance = Mathf.Infinity;
 				var grabbables = GameObject.FindGameObjectsWithTag ("Grabbable");
 				Vector3 grabPosition = transform.position + grabbingPosition;
@@ -62,13 +63,16 @@ public class BirdControl : MonoBehaviour {
 						grabbing = 1;
 					}
 				}
+			}else{
+				// Let go
+
+				if (grabbedObject || (grabbing == 2 && Vector2.Distance (grabbedObject.position, transform.position) > grabbableDistance)) {
+					grabbing = 3;
+				}
 			}
-
-		// Let go
-
-		if (grabbedObject && (Input.GetButtonUp("Grab") || Vector2.Distance (grabbedObject.position, transform.position) > grabbableDistance)) {
-			grabbing = 3;
 		}
+
+		// Update grabbed object position every frame
 
 		if (grabbing == 2) {
 			grabbedObject.transform.localPosition = grabbingPosition;
