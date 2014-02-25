@@ -22,6 +22,10 @@ public class Critter : MonoBehaviour {
 	public float calories = 100.0f;
 	public float calorieBurnRate = 10.0f; // Burn rate per second. 
 
+	public float maxHealth = 100.0f;
+	public float health = 100.0f;
+	public float starvationDamageRate = 10.0f;
+
 	void EvaluateNeeds () {
 		// Evaluate each need in the context of our current environment and prioritize accordingly
 		// Each boils down to a score between 1 and 100
@@ -34,19 +38,32 @@ public class Critter : MonoBehaviour {
 	}
 
 	void Update () {
-		// Consume calories
-		// TODO: Different burn rates for different activities
+		if (calories > 0) {
+			// Consume calories
+			// TODO: Different burn rates for different activities
 
-		calories -= calorieBurnRate * Time.deltaTime;
+			calories -= calorieBurnRate * Time.deltaTime;
+			if(calories < 0){ calories = 0; }
+		}else {
+			// Take damage while starving
 
-		// Die of starvation
+			health -= starvationDamageRate * Time.deltaTime; // TODO: Take damage in chunks, not constantly
+			if(health < 0){ health = 0; }
+		}
 
-		if (calories < 0) {
-			Destroy (gameObject); // FIXME
+		if(health < 0){
+			// Die of starvation
+
+			Destroy(gameObject); // FIXME
 		}
 	}
 
 	void FixedUpdate () {
 
+	}
+
+	void OnGUI () {
+		GUI.Box(new Rect(10, 10, 200 * health / maxHealth,  10), "Health");
+		GUI.Box(new Rect(10, 30, 200 * calories / maxCalories, 10), "Calories");
 	}
 }

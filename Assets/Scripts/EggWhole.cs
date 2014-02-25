@@ -7,7 +7,6 @@ public class EggWhole : MonoBehaviour {
 	public Transform half;
 
 	void OnCollisionEnter2D (Collision2D collision) {
-		Debug.Log ("Collision");
 		if(collision.relativeVelocity.magnitude > breakVelocity){
 			Instantiate (half, transform.position + Random.insideUnitSphere, transform.rotation);
 			Instantiate (half, transform.position + Random.insideUnitSphere, transform.rotation);
