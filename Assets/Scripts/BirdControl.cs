@@ -17,10 +17,11 @@ public class BirdControl : MonoBehaviour {
 	private float maxXSpeed = 5f;			// The fastest the player can travel in the x axis.
 	private float maxYSpeed = 500f;
 	private float flyForce = 550f;			// Amount of force added when the player jumps.
-	private float grabbableDistance = 0.9f;
+	private float interactionDistance = 0.9f;
 	private int grabbing = 0;
 	private Transform grabbedObject = null;
 	private Vector3 grabbingPosition = new Vector3(0.5f, 0, 0);
+	private Transform oldNearest; // FIXME: Ugly name
 
 	void Awake() {
 	}
@@ -63,7 +64,7 @@ public class BirdControl : MonoBehaviour {
 	// Update is called once per frame
 
 	void Update () {
-		// Flight controls
+		// Toggle flying
 
 		if (Input.GetButton("Up")) {
 			fly = true;
@@ -71,40 +72,55 @@ public class BirdControl : MonoBehaviour {
 			fly = false;
 		}
 
-		if (Input.GetButtonDown("Grab")) {
-			// Grab things
+		// Remove highlight on old nearest object
 
-			if(grabbing == 0){
-				// Find objects nearby
+		if(oldNearest != null){
+			oldNearest.SendMessage("Highlight", false);
+		}
 
-				var closeObjects = FindObjectsWithinRange(2.0f);
-				List<Transform> grabbableObjects = new List<Transform>();
+		// Find objects that can be interacted with
 
-				// Filter nearby objects that have the grabbable flag
+		var closeObjects = FindObjectsWithinRange(2.0f);
+		List<Transform> interactiveObjects = new List<Transform>();
 
-				foreach(var closeObject in closeObjects){
-					var props = closeObject.GetComponent<Prop>();
-					if(props != null && props.grabbable == true){
-						grabbableObjects.Add (closeObject);
-					}
-				}
+		// Filter nearby objects that can be interacted with
+		
+		foreach(var closeObject in closeObjects){
+			var props = closeObject.GetComponent<Prop>();
+			if(props != null && (props.grabbable == true || props.edible == true)){
+				interactiveObjects.Add (closeObject);
+			}
+		}
+		
+		// Of the interactive objects, find the closest one
+		
+		var nearest = FindNearestObject(interactiveObjects);
 
-				// Of the grabbable objects, find the closest one
+		if(nearest != null && Vector2.Distance (nearest.position, transform.position) < interactionDistance){
+			nearest.SendMessage("Highlight", true);
+			oldNearest = nearest;
 
-				var nearest = FindNearestObject(grabbableObjects);
+			var props = nearest.GetComponent<Prop>();
 
-				if (nearest) {
-					if (Vector2.Distance (nearest.position, transform.position) < grabbableDistance) {
+			if(props != null){
+				// Grab object
+				
+				if (Input.GetMouseButton(0)) {
+					// Grab things
+					
+					if(grabbing == 0 && props.grabbable == true){
 						grabbedObject = nearest;
 						grabbing = 1;
 					}
 				}
-			}else{
-				// Let go of a  grabbed object
+			}
+		}
 
-				if (grabbedObject || (grabbing == 2 && Vector2.Distance (grabbedObject.position, transform.position) > grabbableDistance)) {
-					grabbing = 3;
-				}
+		// Let go of a  grabbed object
+
+		if(!Input.GetMouseButton(0)){
+			if (grabbedObject) {
+				grabbing = 3;
 			}
 		}
 

@@ -820,8 +820,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabbable: 1
-  edible: 0
-  vegetable: 0
+  edible: 1
+  vegetable: 1
+  calories: 100
 --- !u!50 &888546361
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -924,8 +925,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabbable: 1
-  edible: 0
-  vegetable: 0
+  edible: 1
+  vegetable: 1
+  calories: 100
 --- !u!50 &1111788390
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -1054,8 +1056,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabbable: 1
-  edible: 0
-  vegetable: 0
+  edible: 1
+  vegetable: 1
+  calories: 100
 --- !u!50 &1177383636
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -1377,6 +1380,7 @@ MonoBehaviour:
   grabbable: 1
   edible: 0
   vegetable: 0
+  calories: 0
 --- !u!1 &1989603822
 GameObject:
   m_ObjectHideFlags: 0

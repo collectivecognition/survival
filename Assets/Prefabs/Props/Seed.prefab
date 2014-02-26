@@ -97,8 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabbable: 1
-  edible: 0
-  vegetable: 0
+  edible: 1
+  vegetable: 1
+  calories: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

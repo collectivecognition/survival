@@ -17,4 +17,20 @@ public class Prop : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	// Show the player that they can interact with this prop
+
+	private Color originalColor;
+	public Color highlightColor = Color.yellow;
+
+	public void Highlight(bool on) {
+		if(on){
+			originalColor = renderer.material.color;
+			renderer.material.color = highlightColor;
+		}else{
+			if(originalColor != null){
+				renderer.material.color = originalColor;
+			}
+		}
+	}
 }
