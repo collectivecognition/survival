@@ -146,7 +146,7 @@ public class BirdControl : MonoBehaviour {
 				grabbedObject.transform.parent = null;
 				grabbedObject.rigidbody2D.isKinematic = false;
 				grabbedObject.collider2D.enabled = true;
-				grabbedObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+				// grabbedObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 				grabbedObject = null;
 				grabbing = 0;
 			}
@@ -207,6 +207,6 @@ public class BirdControl : MonoBehaviour {
 		// Multiply the player's x local scale by -1.
 		Vector3 theScale = transform.localScale;
 		theScale.x = -theScale.x;
-		transform.localScale = theScale;
+		// transform.localScale = theScale;
 	}
 }
