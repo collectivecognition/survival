@@ -25,10 +25,11 @@ public class BirdControl : MonoBehaviour {
 	void Awake() {
 	}
 
-	// Use this for initialization
 	void Start () {
 	
 	}
+
+	// Given a list of objects, find the closest one
 
 	Transform FindNearestObject(List<Transform> objects){
 		Transform nearest = null;
@@ -46,6 +47,7 @@ public class BirdControl : MonoBehaviour {
 		return nearest;
 	}
 
+	// Find a list of objects within the distance from us
 
 	List<Transform> FindObjectsWithinRange(float range){
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range);
@@ -59,6 +61,7 @@ public class BirdControl : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+
 	void Update () {
 		// Flight controls
 
