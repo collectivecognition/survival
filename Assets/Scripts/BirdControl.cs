@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+// using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BirdControl : MonoBehaviour {
 
@@ -27,6 +29,34 @@ public class BirdControl : MonoBehaviour {
 	void Start () {
 	
 	}
+
+	bool DoesObjectHaveFlag(GameObject o, string flag){
+		var prop = o.GetType().GetProperty (flag);
+		bool set = false;
+		
+		if(prop != null){
+			set = (bool)prop.GetValue (o, null);
+		}
+		
+		return set;
+	}
+
+	Transform FindNearestObjectWithinRangeWithFlag(float range, string flag){				
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range);
+		Transform nearest = null;
+		float nearestDistance = Mathf.Infinity;
+		Debug.Log (colliders.Length);
+		foreach (Collider2D collider in colliders) {
+			if(DoesObjectHaveFlag (collider.gameObject, flag)){
+				float distance = Vector3.Distance (collider.transform.position, transform.position);
+				if(distance < nearestDistance){
+					nearestDistance = distance;
+					nearest = collider.transform;
+				}
+			}
+		}
+		return nearest;
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,26 +72,15 @@ public class BirdControl : MonoBehaviour {
 			// Grab things
 
 			if(grabbing == 0){
-				var nearestDistance = Mathf.Infinity;
-				var grabbables = GameObject.FindGameObjectsWithTag ("Grabbable");
-				Vector3 grabPosition = transform.position + grabbingPosition;
-				Transform nearest = null;
-
-				foreach (GameObject obj in grabbables) {
-					var objectPosition = obj.transform.position;
-					var distance = (objectPosition - grabPosition).sqrMagnitude;
-
-					if (distance < nearestDistance) {
-						nearest = obj.transform;
-						nearestDistance = distance;
-					}
-				}
-
+				Transform nearest = FindNearestObjectWithinRangeWithFlag(2.0f, "grabbable");
 				if (nearest) {
+					Debug.Log (nearest);
 					if (Vector2.Distance (nearest.position, transform.position) < grabbableDistance) {
 						grabbedObject = nearest;
 						grabbing = 1;
 					}
+				}else{
+					Debug.Log ("No nearest");
 				}
 			}else{
 				// Let go
