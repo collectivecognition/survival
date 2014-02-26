@@ -72,8 +72,12 @@ public class BirdControl : MonoBehaviour {
 			// Grab things
 
 			if(grabbing == 0){
+				// Find objects nearby
+
 				var closeObjects = FindObjectsWithinRange(2.0f);
 				List<Transform> grabbableObjects = new List<Transform>();
+
+				// Filter nearby objects that have the grabbable flag
 
 				foreach(var closeObject in closeObjects){
 					var props = closeObject.GetComponent<Prop>();
@@ -81,6 +85,8 @@ public class BirdControl : MonoBehaviour {
 						grabbableObjects.Add (closeObject);
 					}
 				}
+
+				// Of the grabbable objects, find the closest one
 
 				var nearest = FindNearestObject(grabbableObjects);
 
@@ -91,7 +97,7 @@ public class BirdControl : MonoBehaviour {
 					}
 				}
 			}else{
-				// Let go
+				// Let go of a  grabbed object
 
 				if (grabbedObject || (grabbing == 2 && Vector2.Distance (grabbedObject.position, transform.position) > grabbableDistance)) {
 					grabbing = 3;
