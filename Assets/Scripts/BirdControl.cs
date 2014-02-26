@@ -30,32 +30,32 @@ public class BirdControl : MonoBehaviour {
 	
 	}
 
-	bool DoesObjectHaveFlag(GameObject o, string flag){
-		var prop = o.GetType().GetProperty (flag);
-		bool set = false;
-		
-		if(prop != null){
-			set = (bool)prop.GetValue (o, null);
-		}
-		
-		return set;
-	}
-
-	Transform FindNearestObjectWithinRangeWithFlag(float range, string flag){				
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range);
+	Transform FindNearestObject(List<Transform> objects){
 		Transform nearest = null;
 		float nearestDistance = Mathf.Infinity;
-		Debug.Log (colliders.Length);
-		foreach (Collider2D collider in colliders) {
-			if(DoesObjectHaveFlag (collider.gameObject, flag)){
-				float distance = Vector3.Distance (collider.transform.position, transform.position);
-				if(distance < nearestDistance){
-					nearestDistance = distance;
-					nearest = collider.transform;
-				}
+
+		foreach (Transform o in objects) {
+			float distance = Vector3.Distance (o.position, transform.position);
+		
+			if (distance < nearestDistance) {
+				nearestDistance = distance;
+				nearest = o;
 			}
 		}
+
 		return nearest;
+	}
+
+
+	List<Transform> FindObjectsWithinRange(float range){
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range);
+		List<Transform> objects = new List<Transform>();
+
+		foreach (Collider2D collider in colliders) {
+			objects.Add (collider.transform);
+		}
+
+		return objects;
 	}
 	
 	// Update is called once per frame
@@ -72,15 +72,23 @@ public class BirdControl : MonoBehaviour {
 			// Grab things
 
 			if(grabbing == 0){
-				Transform nearest = FindNearestObjectWithinRangeWithFlag(2.0f, "grabbable");
+				var closeObjects = FindObjectsWithinRange(2.0f);
+				List<Transform> grabbableObjects = new List<Transform>();
+
+				foreach(var closeObject in closeObjects){
+					var props = closeObject.GetComponent<Prop>();
+					if(props != null && props.grabbable == true){
+						grabbableObjects.Add (closeObject);
+					}
+				}
+
+				var nearest = FindNearestObject(grabbableObjects);
+
 				if (nearest) {
-					Debug.Log (nearest);
 					if (Vector2.Distance (nearest.position, transform.position) < grabbableDistance) {
 						grabbedObject = nearest;
 						grabbing = 1;
 					}
-				}else{
-					Debug.Log ("No nearest");
 				}
 			}else{
 				// Let go
