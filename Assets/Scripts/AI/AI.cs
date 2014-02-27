@@ -1,15 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
+// http://www.aaai.org/Papers/AIIDE/2005/AIIDE05-006.pdf
 
 public class AI : MonoBehaviour {
+	private class Goal {
+		public bool active = false;
 
-	// Use this for initialization
+		public float Priority(){
+
+		}
+	}
+
+	private List<Goal> goals = new List<Goal>();
+
 	void Start () {
 	
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-	
+		// Decide which goal is the most important
+
+		// Work toward that goal
 	}
 }
