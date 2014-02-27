@@ -1,33 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &100002
+--- !u!1 &100000
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 400002}
+  - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
+  - 95: {fileID: 9500000}
+  - 61: {fileID: 6100000}
   - 50: {fileID: 5000000}
-  - 58: {fileID: 5800000}
-  - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: EggHalf
-  m_TagString: Grabbable
+  m_Name: Sheep
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &400002
+--- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: -7.79659271, y: 5.17211246, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!50 &5000000
@@ -35,49 +35,47 @@ Rigidbody2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100000}
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0
   m_AngularDrag: .0500000007
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_FixedAngle: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!58 &5800000
-CircleCollider2D:
+--- !u!61 &6100000
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_Material: {fileID: 6200000, guid: 52163c4332d13447ab8c355c6a3b1dc8, type: 2}
+  m_Material: {fileID: 6200000, guid: 24ac79603fb61400588e37d9f6fe952a, type: 2}
   m_IsTrigger: 0
-  m_Radius: .0299999993
+  m_Size: {x: .300000012, y: .25}
   m_Center: {x: 0, y: 0}
---- !u!114 &11400000
-MonoBehaviour:
+--- !u!95 &9500000
+Animator:
+  serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 444475108e67f4fb99127408667e2e86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabbable: 1
-  edible: 0
-  vegetable: 0
-  calories: 0
-  highlightColor: {r: 1, g: .921568632, b: .0156862754, a: 1}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 930df6f52d0bc45dc97736c81c779cf0, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -93,7 +91,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 559147ba50d7f41c1bb5f33c8a900590, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 43c621efb069249f489dc68ede8e0e94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -104,6 +102,6 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 100002}
+  m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
   m_IsExploded: 1

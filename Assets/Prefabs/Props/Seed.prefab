@@ -100,6 +100,7 @@ MonoBehaviour:
   edible: 1
   vegetable: 1
   calories: 100
+  highlightColor: {r: 1, g: .0156862736, b: .0156862736, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e7a817f5afb924ef5bb0b82e545de0ec
+guid: 43c621efb069249f489dc68ede8e0e94
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -20,7 +20,7 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
@@ -45,58 +45,58 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: char_flappy_bird_0
+    - name: char_sheep_0
       rect:
         serializedVersion: 2
         x: 2
-        y: 85
-        width: 34
-        height: 24
+        y: 44
+        width: 32
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: char_flappy_bird_1
+    - name: char_sheep_1
       rect:
         serializedVersion: 2
-        x: 47
-        y: 85
-        width: 34
-        height: 24
+        x: 44
+        y: 44
+        width: 32
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: char_flappy_bird_2
+    - name: char_sheep_2
       rect:
         serializedVersion: 2
-        x: 91
-        y: 84
-        width: 34
-        height: 24
+        x: 85
+        y: 44
+        width: 32
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: char_flappy_bird_3
+    - name: char_sheep_3
       rect:
         serializedVersion: 2
         x: 2
-        y: 37
-        width: 34
-        height: 24
+        y: 12
+        width: 32
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: char_flappy_bird_4
+    - name: char_sheep_4
       rect:
         serializedVersion: 2
-        x: 46
-        y: 38
-        width: 34
-        height: 24
+        x: 44
+        y: 12
+        width: 32
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: char_flappy_bird_5
+    - name: char_sheep_5
       rect:
         serializedVersion: 2
-        x: 91
-        y: 38
-        width: 34
-        height: 24
+        x: 85
+        y: 12
+        width: 32
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
   spritePackingTag: 

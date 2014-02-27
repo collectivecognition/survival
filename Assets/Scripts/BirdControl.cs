@@ -27,7 +27,6 @@ public class BirdControl : MonoBehaviour {
 	}
 
 	void Start () {
-	
 	}
 
 	// Given a list of objects, find the closest one
@@ -189,14 +188,16 @@ public class BirdControl : MonoBehaviour {
 			Flip();
 
 		if (fly) {
-			// rigidbody2D.gravityScale = 0.2f;
 			if(Time.time - lastFlap > timeBetweenFlaps || lastFlap == 0.0f){
 				lastFlap = Time.time;
 				rigidbody2D.AddForce(new Vector2(0f, flyForce));
 			}
+			GetComponent<Animator> ().enabled = true;
+			// animation.Play ();
 			
 		} else {
-			// rigidbody2D.gravityScale = 1.0f;
+			GetComponent<Animator> ().enabled = false;
+			// animation.Stop();
 		}
 	}
 
