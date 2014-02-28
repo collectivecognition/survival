@@ -4,8 +4,16 @@ using System.Collections.Generic;
 
 public class Goal {
 	public bool active = false;
-	
-	public float Priority(){
-		
+	public GameObject gameObject;
+
+	public Goal(GameObject _gameObject){
+		gameObject = _gameObject;
 	}
+
+	public virtual float Priority(){
+		return 0.0f;
+	}
+
+	public virtual void Init(){}
+	public virtual void Achieve(){}
 }

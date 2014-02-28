@@ -12,7 +12,11 @@ GameObject:
   - 95: {fileID: 9500000}
   - 61: {fileID: 6100000}
   - 50: {fileID: 5000000}
-  m_Layer: 0
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400002}
+  - 58: {fileID: 5800000}
+  m_Layer: 8
   m_Name: Sheep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +30,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.79659271, y: 5.17211246, z: 0}
+  m_LocalPosition: {x: -.525826931, y: -.209445, z: -.991076231}
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -39,22 +43,33 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
-  m_GravityScale: 10
-  m_FixedAngle: 0
+  m_GravityScale: 1
+  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!58 &5800000
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Radius: .100000001
+  m_Center: {x: 0, y: 0}
 --- !u!61 &6100000
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 6200000, guid: 24ac79603fb61400588e37d9f6fe952a, type: 2}
   m_IsTrigger: 0
-  m_Size: {x: .300000012, y: .25}
+  m_Size: {x: .300000012, y: .200000003}
   m_Center: {x: 0, y: 0}
 --- !u!95 &9500000
 Animator:
@@ -65,11 +80,49 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 930df6f52d0bc45dc97736c81c779cf0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4f9afe058abcc4f65aab0674875ed714, type: 2}
   m_CullingMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdcdaac0800a4540870baff8086ec36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d36e4df426d742669fbc473df069830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444475108e67f4fb99127408667e2e86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbable: 1
+  edible: 0
+  vegetable: 0
+  calories: 0
+  highlightColor: {r: 1, g: .921568632, b: .0156862754, a: 1}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

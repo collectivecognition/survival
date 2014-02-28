@@ -11,12 +11,12 @@ public class BirdControl : MonoBehaviour {
 	private bool fly = false;
 	private float lastFlap = 0;
 	private float timeBetweenFlaps = 0.3f;
+	private Animator animator;
 	
-	
-	public float moveForce = 100.0f;			// Amount of force added to move the player left and right.
+	private float moveForce = 10f;			// Amount of force added to move the player left and right.
 	private float maxXSpeed = 5f;			// The fastest the player can travel in the x axis.
-	private float maxYSpeed = 500f;
-	private float flyForce = 550f;			// Amount of force added when the player jumps.
+	private float maxYSpeed = 100f;
+	private float flyForce = 50f;			// Amount of force added when the player jumps.
 	private float interactionDistance = 0.9f;
 	private int grabbing = 0;
 	private Transform grabbedObject = null;
@@ -24,6 +24,7 @@ public class BirdControl : MonoBehaviour {
 	private Transform oldNearest; // FIXME: Ugly name
 
 	void Awake() {
+		animator = this.GetComponent<Animator> ();
 	}
 
 	void Start () {
@@ -157,35 +158,14 @@ public class BirdControl : MonoBehaviour {
 
 		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
 
-		if(h * rigidbody2D.velocity.x < maxXSpeed)
+		if(Mathf.Abs (h * rigidbody2D.velocity.x) < maxXSpeed)
 			// ... add a force to the player.
 			rigidbody2D.AddForce(Vector2.right * h * moveForce);
 
-		// Snag the player's physics velocity
-
-		float x = rigidbody2D.velocity.x;
-		float y = rigidbody2D.velocity.y;;
-
-		// If the player's horizontal velocity is greater than the maxSpeed...
-		if(Mathf.Abs(rigidbody2D.velocity.x) > maxXSpeed)
-			// ... set the player's velocity to the maxSpeed in the x axis.
-			x = Mathf.Sign (rigidbody2D.velocity.x) * maxXSpeed;
-
-		// If the player's vertical velocity is greater than the maxSpeed...
-		if (Mathf.Abs (rigidbody2D.velocity.y) > maxYSpeed)
-			// ... set the player's velocity to the maxSpeed in the y axis.
-			y = Mathf.Sign (rigidbody2D.velocity.y) * maxYSpeed;
-
-		rigidbody2D.velocity = new Vector2 (x, y);
-
-		// If the input is moving the player right and the player is facing left...
-		if(h > 0 && !facingRight)
-			// ... flip the player.
-			Flip();
-		// Otherwise if the input is moving the player left and the player is facing right...
-		else if(h < 0 && facingRight)
-			// ... flip the player.
-			Flip();
+		if(h > 0)
+			animator.SetBool ("direction", false);
+		if(h < 0)
+			animator.SetBool ("direction", true);
 
 		if (fly) {
 			if(Time.time - lastFlap > timeBetweenFlaps || lastFlap == 0.0f){

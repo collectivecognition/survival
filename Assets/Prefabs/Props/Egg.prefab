@@ -12,6 +12,7 @@ GameObject:
   - 58: {fileID: 5800000}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Grabbable
@@ -25,8 +26,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.65164375, y: -.357701063, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -.349085808, w: .937090814}
+  m_LocalPosition: {x: 9.7107296, y: -4.44301224, z: .976272821}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -36,8 +37,8 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mass: 1
-  m_LinearDrag: 1
+  m_Mass: .0500000007
+  m_LinearDrag: .100000001
   m_AngularDrag: .0500000007
   m_GravityScale: 1
   m_FixedAngle: 0
@@ -68,6 +69,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   half: {fileID: 400002, guid: 4f24b9770299d49f58ea781a69478a13, type: 2}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444475108e67f4fb99127408667e2e86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbable: 1
+  edible: 0
+  vegetable: 0
+  calories: 0
+  highlightColor: {r: 1, g: .921568632, b: .0156862754, a: 1}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
