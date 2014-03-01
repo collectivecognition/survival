@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class AI : MonoBehaviour {
 	private List<Goal> goals = new List<Goal>();
 
+
 	void Start () {
 		goals.Add (new ExploreGoal (gameObject));
 	}
