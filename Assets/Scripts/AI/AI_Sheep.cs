@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AI_Sheep : MonoBehaviour {
+public class AI_Sheep : AI {
 
 	// Use this for initialization
 	void Start () {
@@ -10,6 +10,6 @@ public class AI_Sheep : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 }
